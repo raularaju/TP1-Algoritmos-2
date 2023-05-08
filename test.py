@@ -1,11 +1,32 @@
-string = "Olá, mundo!" # includes non-ASCII characters
+import struct
 
-# Convert the string to a byte array using UTF-8 encoding
-byte_array = string.encode("utf-8")
+s = "ç"
+encoded = s.encode('utf-8')
+print(encoded)
+print(len(encoded))  # prints 5
+print(encoded.decode())
+n = 16
+bits = n.bit_length()
+print(bits)
+""" 
+x = 256  # an integer
+c = 'a'   # a character
 
-# Convert each byte to its binary representation and concatenate the results
-#binary_string = ''.join(['{0:08b}'.format(byte) for byte in byte_array])
+# Convert the integer to binary (4 bytes, little-endian)
+x_bytes = x.to_bytes(2, byteorder= "big")
 
-# Write the binary string to a file
-with open("output.txt", "wb") as file:
-    file.write(byte_array)
+# Convert the character to binary (1 byte)
+c_bytes = c.encode()
+
+# Open the binary file in write mode and write the binary data to 
+with open("output.bin", "wb") as file:
+        for i in range(10):
+            i_bytes = i.to_bytes(1, byteorder= "big")
+            file.write(i_bytes)
+
+
+with open("output.bin", "rb") as file:
+    data = file.read()
+    print(data)
+    value = int.from_bytes(data, byteorder='big')  
+    print(value) """
