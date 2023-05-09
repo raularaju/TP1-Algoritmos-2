@@ -12,15 +12,19 @@ class Trie:
         self.ultimo_indice = 0
     def get_raiz(self):
         return self.raiz
-    def buscar_por_indice(self, inicio: No, indice: int) -> No:
+    def buscar_por_indice(self, inicio: No, indice: int, cadeia = "") -> str:
         if(inicio.indice == indice):
-            return No
+            return cadeia + inicio.caracter
+        if(len(inicio.filhos) == 0):
+            return ""     
         elif(len(inicio.filhos) != 0):
             for filho in inicio.filhos:
-                return self.buscar(filho, indice)
-
+                r_busca_filho = self.buscar_por_indice(filho, indice, cadeia + inicio.caracter)
+                if (r_busca_filho != ""):
+                    return r_busca_filho
+        return ""
     def buscar_por_cadeia(self, inicio: No, cadeia: str) -> No:
-        if(inicio.caracter == cadeia):
+        if(cadeia == ""):
             return inicio
 
         for filho in inicio.filhos:
@@ -29,8 +33,8 @@ class Trie:
             elif(cadeia.startswith(filho.caracter)):
                 return self.buscar_por_cadeia(filho, cadeia[1:])
     def get_antecessor(self, inicio: No, cadeia: str) -> No:
-        if(inicio.caracter == cadeia):
-            return None
+        """ if(inicio.caracter == cadeia):
+            return None """
         for filho in inicio.filhos:
             if(filho.caracter == cadeia):
                 return inicio
@@ -55,9 +59,9 @@ class Trie:
             inicio.filhos.append(novo_no)
             return novo_no """
     def inserir(self, inicio: No, nova_cadeia: str) -> No:
-        if(inicio.caracter == nova_cadeia):
-            return
-        if(inicio.indice != 0 and nova_cadeia == ""):
+        """ if(inicio.caracter == nova_cadeia):
+            return """
+        if(nova_cadeia == ""):
             return
         tem_match = False
         for filho in inicio.filhos:
@@ -78,5 +82,5 @@ t.inserir(raiz, "ab")
 t.inserir(raiz, "b")
 t.inserir(raiz, "ac")
 t.inserir(raiz, "bc")
-n = t.buscar_por_cadeia(raiz,"abasdsa")
-print(raiz.filhos) """
+n = t.buscar_por_indice(raiz, 4)
+print(n) """
