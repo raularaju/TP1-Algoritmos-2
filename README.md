@@ -12,15 +12,15 @@ Tanto a compressão quanto a descompressão é dado através de linhas de comand
 
 ## Implementação
 ### Trie
-Foi implementada uma trie tradicional para auxiliar nas consultas e inserções no dicionário. Nessa estrutura, cada nó tem dois atributos: um caracter e um índice (inteiro). O primeiro indica o último caracter da cadeia que o nó representa e o último revela o índice do outro nó que representa o resto daquela cadeia. Os métodos mais importantes são:
+- Foi implementada uma trie tradicional para auxiliar nas consultas e inserções no dicionário. Nessa estrutura, cada nó tem dois atributos: um caracter e um índice (inteiro). O primeiro indica o último caracter da cadeia que o nó representa e o último revela o índice do outro nó que representa o resto daquela cadeia. Os métodos mais importantes são:
 #### get_raiz()
-    Retorna a raiz da Trie, sendo que a raiz é sempre inicializada com a string vazia e o índice 0
+- Retorna a raiz da Trie, sendo que a raiz é sempre inicializada com a string vazia e o índice 0
 #### buscar_por_cadeia(inicio, cadeia)
-    Busca um determinada cadeia na trie usando a partir do nó de partida. Se encontra a cadeia, retorna o nó que a representa. Caso contrário, retorna None.
+- Busca um determinada cadeia na trie usando a partir do nó de partida. Se encontra a cadeia, retorna o nó que a representa. Caso contrário, retorna None.
 #### buscar_por_indice(inicio, indice)
-    Busca uma determinada cadeia na Trie usando DFS a partir de um índice. Se encontra a cadeia, retorna a cadeia. Caso contrário, retorna a string vazia.
+- Busca uma determinada cadeia na Trie usando DFS a partir de um índice. Se encontra a cadeia, retorna a cadeia. Caso contrário, retorna a string vazia.
 #### inserir(inicio, cadeia)
-    Insere uma cadeia na Trie. Se a cadeia não ja estiver na Trie retorna uma tupla: (índice do antecessor, ultimo_caractere). Se já existir, retorna: (índice do antecessor, <string_vazia>)  
+- Insere uma cadeia na Trie. Se a cadeia não ja estiver na Trie retorna uma tupla: (índice do antecessor, ultimo_caractere). Se já existir, retorna: (índice do antecessor, <string_vazia>)  
 
 
 ### Compressão
@@ -35,6 +35,7 @@ Depois da inserção de todos os caracteres, começa-se a escrever no arquivo bi
 Lê-se o número de bytes usados para representar um caractere e um inteiro do arquivo binário. Com essa informação, a leitura do arquivo é continuada e vai-se contruindo o dicionário a partir de uma Trie somente com o nó da raiz.Sendo assim, para cada tupla (indice, caracter) procura-se a cadeia na trie pelo indice e insere-se um novo elemento no dicionário que consiste nessa cadeia concatenada com o caractere da tupla. Esse processo se segue até que todo o arquivo seja lido.
 
 ## Taxa de compressão
+Segue os exemplos e suas respectivas taxas de compressão (tamanho arquivo comprimido/ tamanho arquivo original)
 
 | Arquivo              | Tamanho arquivo original | Tamanho arquivo comprimido| Taxa de compressão |
 | -------------------- |:------------------------:| -------------------------:|:------------------:|
