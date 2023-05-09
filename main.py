@@ -45,4 +45,4 @@ elif(opcao_escolhida == OPCAO_DESCOMPRESSAO):
     descomprimir_binario(nome_arq_bin,nome_arq_saida,27, 1, dicionario) """
 
 dicionario = comprimir_texto(nome_arq_texto, nome_arq_bin)
-#descomprimir_binario(nome_arq_bin,nome_arq_saida,27, 1, dicionario)
+descomprimir_binario(nome_arq_bin,nome_arq_saida,27, 1)

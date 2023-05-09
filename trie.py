@@ -62,7 +62,7 @@ class Trie:
         """ if(inicio.caracter == nova_cadeia):
             return """
         if(nova_cadeia == ""):
-            return
+            return inicio.indice, ""
         tem_match = False
         for filho in inicio.filhos:
             if(nova_cadeia.startswith(filho.caracter)):
@@ -77,10 +77,11 @@ class Trie:
 """ t = Trie()
 raiz = t.get_raiz()
 t.inserir(raiz, "a")
-t.inserir(raiz, "a")
+i, c = t.inserir(raiz, "a")
+print(i, c)
 t.inserir(raiz, "ab")
 t.inserir(raiz, "b")
 t.inserir(raiz, "ac")
 t.inserir(raiz, "bc")
 n = t.buscar_por_indice(raiz, 4)
-print(n) """
+print(n) """ 

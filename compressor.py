@@ -25,32 +25,39 @@ def comprimir_texto(nome_arq_entrada, nome_arq_saida):
     num_bits_int = 0
     num_bits_char = 0
     codigos = []
+    n = None
     with open(nome_arq_entrada, 'r') as f:
         maior_cadeia = ""
         while True:
-            char = f.read(1)
-            maior_cadeia += str(char)
+            c_arquivo = f.read(1) 
+            maior_cadeia += str(c_arquivo)
             n = t.buscar_por_cadeia(raiz, maior_cadeia)
-            if (n == None):
+            if (n == None or not c_arquivo):
                 indice, char = t.inserir(raiz, maior_cadeia)
+                codigos.append((indice, char))
+                if(not char):
+                    break
                 char_min_bits = min_bits_necessarios_char(char)
                 if(char_min_bits > num_bits_char):
                     num_bits_char = char_min_bits
-                codigos.append((indice, char))
                 ind_min_bits = min_bits_necessarios_int(indice)
                 if (ind_min_bits > num_bits_int):
                     num_bits_int = ind_min_bits
                 maior_cadeia = ""
             if not char:
                 break
+    print(codigos)
     num_bits_int = max(num_bits_int, min_bits_necessarios_int(len(codigos)))
     num_bits_int_bin = str(bin(num_bits_int)[2:]).rjust(8, '0')
     num_bits_char_bin = str(bin(num_bits_char)[2:]).rjust(8, '0')
-
     with open(nome_arq_saida, "wb") as f:
         f.write(tranformar_str_em_byte_arr(num_bits_int_bin+num_bits_char_bin))
         for indice, char in  codigos:
-            char_bin = format(ord(char[-1]), '08b').rjust(num_bits_char, '0')
+            char_bin = ''
+            if(not char):
+                char_bin = '0' * num_bits_char
+            else:
+                char_bin = format(ord(char[-1]), '08b').rjust(num_bits_char, '0')
             indice_bin = str(bin(indice)[2:]).rjust(num_bits_int, '0')
             code_bin = indice_bin + char_bin
             code_bin_byte_array = tranformar_str_em_byte_arr(code_bin)
