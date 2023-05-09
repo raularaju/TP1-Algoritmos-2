@@ -2,7 +2,7 @@ from trie import Trie
 from compressor import comprimir_texto
 from descompressor import descomprimir_binario
 import argparse
-""" 
+
 OPCAO_COMPRESSAO = "compressao"
 OPCAO_DESCOMPRESSAO = "descompressao"
 
@@ -31,18 +31,15 @@ else:
 if args.arq_saida:
     nome_arq_saida = args.arq_saida
 elif args.arq_texto:
-    nome_arq_saida = nome_arq_texto + ".z78"
+    nome_arq_saida = nome_arq_texto.replace(".txt", "") + ".z78"
 elif args.arq_bin:
-    nome_arq_saida = nome_arq_bin + ".txt" """
+    nome_arq_saida = nome_arq_bin + ".txt"
 
-nome_arq_texto = "entrada.txt"
-nome_arq_bin = "bin.z78"
-nome_arq_saida = "saida.txt"
+
 dicionario = Trie()
-""" if(opcao_escolhida == OPCAO_COMPRESSAO):
+if(opcao_escolhida == OPCAO_COMPRESSAO):
     dicionario = comprimir_texto(nome_arq_texto, nome_arq_saida)
 elif(opcao_escolhida == OPCAO_DESCOMPRESSAO):
-    descomprimir_binario(nome_arq_bin,nome_arq_saida,27, 1, dicionario) """
+    descomprimir_binario(nome_arq_bin,nome_arq_saida)
 
-dicionario = comprimir_texto(nome_arq_texto, nome_arq_bin)
-descomprimir_binario(nome_arq_bin,nome_arq_saida,27, 1)
+
