@@ -17,8 +17,8 @@ Tanto a compressão quanto a descompressão é dado através de linhas de comand
 - Retorna a raiz da Trie, sendo que a raiz é sempre inicializada com a string vazia e o índice 0
 #### buscar_por_cadeia(inicio, cadeia)
 - Busca um determinada cadeia na trie usando a partir do nó de partida. Se encontra a cadeia, retorna o nó que a representa. Caso contrário, retorna None.
-#### buscar_por_indice(inicio, indice)
-- Busca uma determinada cadeia na Trie usando DFS a partir de um índice. Se encontra a cadeia, retorna a cadeia. Caso contrário, retorna a string vazia.
+#### buscar_por_indice(indice)
+- Busca uma determinada cadeia na Trie usando DFS a partir de um índice. Se encontra a cadeia, retorna a cadeia. Caso contrário, retorna a string vazia. Esse método começa do  nó relativo ao índice e sobe na árvore concatenando os caracteres de cada nó até chegar na raiz.
 #### inserir(inicio, cadeia)
 - Insere uma cadeia na Trie. Se a cadeia não ja estiver na Trie retorna uma tupla: (índice do antecessor, ultimo_caractere). Se já existir, retorna: (índice do antecessor, <string_vazia>)  
 
