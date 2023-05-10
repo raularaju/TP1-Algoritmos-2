@@ -30,11 +30,15 @@ def comprimir_texto(nome_arq_entrada, nome_arq_saida):
             c_arquivo = f.read(1) 
             maior_cadeia += str(c_arquivo)
             n = t.buscar_por_cadeia(raiz, maior_cadeia)
+            if(not c_arquivo and n != None):
+                antec = n.antecessor
+                if(antec != None):
+                    codigos.append((antec.indice, maior_cadeia[-1]))
+                break
             if (n == None or not c_arquivo):
                 indice, char = t.inserir(raiz, maior_cadeia)
                 codigos.append((indice, char))
-                if(not char):
-                    break
+                
                 char_min_bytes = min_bytes_necessarios_char(char)
                 if(char_min_bytes > num_bytes):
                     num_bytes = char_min_bytes
@@ -44,6 +48,7 @@ def comprimir_texto(nome_arq_entrada, nome_arq_saida):
                 maior_cadeia = ""
             if not char:
                 break
+
     num_bytes_int = max(num_bytes_int, min_bytes_necessarios_int(len(codigos)))
     num_bytes_int_bin = str(bin(num_bytes_int)[2:]).rjust(8, '0')
     num_bytes_bin = str(bin(num_bytes)[2:]).rjust(8, '0')
