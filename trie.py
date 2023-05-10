@@ -76,7 +76,7 @@ class Trie:
             inicio.filhos.append(novo_no)
             return inicio.indice, nova_cadeia[-1]
 
-t = Trie()
+""" t = Trie()
 raiz = t.get_raiz()
 t.inserir(raiz, "a")
 i, c = t.inserir(raiz, "a")
@@ -86,4 +86,4 @@ t.inserir(raiz, "b")
 t.inserir(raiz, "ac")
 t.inserir(raiz, "bc")
 n = t.buscar_por_indice(2)
-print(n) 
+print(n)  """

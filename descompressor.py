@@ -11,8 +11,9 @@ def descomprimir_binario(nome_arq_bin: str, nome_arq_saida: str):
             if not indice_bytes:
                 break
             indice =  int.from_bytes(indice_bytes, byteorder='big')
-            char_bytes  = arq_bin.read(num_bytes_char)
-            char = (char_bytes).decode('latin-1')
+            char_byte = arq_bin.read(num_bytes_char)
+            char = int.from_bytes(char_byte, byteorder='big', signed=False)
+            char = chr(char) 
             cadeia = dicionario.buscar_por_indice(indice)
             dicionario.inserir(raiz, cadeia+char)
             arq_saida.write("".join([cadeia + char]))
