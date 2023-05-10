@@ -12,12 +12,9 @@ def descomprimir_binario(nome_arq_bin: str, nome_arq_saida: str):
                 break
             indice =  int.from_bytes(indice_bytes, byteorder='big')
             char_bytes  = arq_bin.read(num_bytes_char)
-            char = bytes(char_bytes).decode('latin-1')
-            cadeia = dicionario.buscar_por_indice(raiz, indice)
+            char = (char_bytes).decode('latin-1')
+            cadeia = dicionario.buscar_por_indice(indice)
             dicionario.inserir(raiz, cadeia+char)
-            if(char != ''):
-                arq_saida.write(cadeia + char)
-            else:
-                arq_saida.write(cadeia)
+            arq_saida.write("".join([cadeia + char]))
             """ cadeia = dicionario.buscar_por_indice(raiz, indice)
             arq_saida.write(cadeia + char) """
